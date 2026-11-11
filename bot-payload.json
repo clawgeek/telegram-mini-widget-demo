@@ -1,0 +1,11 @@
+{
+  "chat_id": "@your_channel_or_user_id",
+  "text": "你的 TON 钱包卡片已就绪 👇（Bot API 10.4 原生小组件）",
+  "native_widget": "<div id=\"app\" style=\"font:14px system-ui;color:#fff;background:#17212b;padding:12px;border-radius:12px;width:240px;box-sizing:border-box\"><div style=\"font-weight:700;margin-bottom:2px\">💎 TON 钱包卡片</div><div style=\"opacity:.6;font-size:11px;margin-bottom:6px\">Bot API 10.4 · 原生小组件</div><div id=\"bal\" style=\"font-size:22px;font-weight:800;color:#9bdcff;margin:2px 0\">— TON</div><div id=\"nft\" style=\"opacity:.7;font-size:12px;margin-bottom:8px\">NFT 贴纸：—</div><button id=\"btn\" style=\"width:100%;padding:9px;border:0;border-radius:8px;background:#2ea6ff;color:#fff;font-weight:700;cursor:pointer\">连接并签名</button><div id=\"r\" style=\"display:none;margin-top:8px;font-size:12px;color:#7fd\">仅你可见：交易已签名 ✓</div></div><script>var tg=window.Telegram&&window.Telegram.WebApp;if(tg){tg.ready();tg.expand();}document.getElementById('btn').onclick=function(){document.getElementById('bal').textContent='12.84 TON';document.getElementById('nft').textContent='NFT 贴纸：3';document.getElementById('r').style.display='block';};<\/script>",
+  "reply_markup": {
+    "inline_keyboard": [
+      [ { "text": "在 Telegram 中打开", "url": "https://t.me/your_bot" } ]
+    ]
+  },
+  "_note": "native_widget 字段名与下发方式以 Telegram 官方 Bot API 10.4 文档为准；此处为结构示意，组件源码见 widget.html（1358 字节，<4KB）。"
+}
