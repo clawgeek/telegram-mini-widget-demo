@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Telegram 原生小组件 Demo · Bot API 10.4</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #0e1621; color: #e9edf0; font: 15px/1.6 system-ui, "PingFang SC", sans-serif; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 32px 20px 64px; }
+  h1 { font-size: 24px; margin: 0 0 6px; }
+  .sub { color: #8a97a5; margin-bottom: 24px; }
+  .card { background: #17212b; border: 1px solid #25323f; border-radius: 14px; padding: 20px; margin: 18px 0; }
+  .card h2 { font-size: 16px; margin: 0 0 14px; color: #9bdcff; }
+  /* Telegram 聊天气泡预览 */
+  .chat { background: #0e1621; border-radius: 12px; padding: 18px; }
+  .msg { display: flex; gap: 10px; align-items: flex-start; }
+  .avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg,#2ea6ff,#1d6fd0); display: flex; align-items: center; justify-content: center; font-size: 20px; flex: 0 0 auto; }
+  .bubble { background: #182533; border-radius: 4px 14px 14px 14px; padding: 10px 12px; max-width: 280px; }
+  .bubble .name { color: #6ec5ff; font-weight: 700; font-size: 13px; margin-bottom: 6px; }
+  .meta { color: #708499; font-size: 12px; margin-top: 6px; }
+  pre { background: #0b1016; border: 1px solid #25323f; border-radius: 10px; padding: 14px; overflow: auto; font: 12.5px/1.5 ui-monospace, Menlo, Consolas, monospace; color: #cfe3f2; }
+  .tag { display: inline-block; background: #1d2b38; color: #9bdcff; border-radius: 6px; padding: 2px 8px; font-size: 12px; margin-right: 6px; }
+  .ok { color: #5fd38a; font-weight: 700; }
+  ul { margin: 8px 0; padding-left: 20px; } li { margin: 4px 0; }
+  a { color: #6ec5ff; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Telegram 原生小组件最小 Demo</h1>
+  <div class="sub">基于 Telegram Bot API 10.4 —— 任意消息变身应用，原生 HTML 小组件 &lt;4KB、可交互、原地更新、集成 TON 钱包。</div>
+
+  <div class="card">
+    <h2>① 实时预览：机器人消息气泡内的原生小组件</h2>
+    <div class="chat">
+      <div class="msg">
+        <div class="avatar">🤖</div>
+        <div class="bubble">
+          <div class="name">WalletBot</div>
+          <!-- 以下是 Bot API 10.4 发送的原生 HTML 小组件（真实可交互） -->
+          <div id="app" style="font:14px system-ui;color:#fff;background:#17212b;padding:12px;border-radius:12px;width:240px;box-sizing:border-box">
+            <div style="font-weight:700;margin-bottom:2px">💎 TON 钱包卡片</div>
+            <div style="opacity:.6;font-size:11px;margin-bottom:6px">Bot API 10.4 · 原生小组件</div>
+            <div id="bal" style="font-size:22px;font-weight:800;color:#9bdcff;margin:2px 0">— TON</div>
+            <div id="nft" style="opacity:.7;font-size:12px;margin-bottom:8px">NFT 贴纸：—</div>
+            <button id="btn" style="width:100%;padding:9px;border:0;border-radius:8px;background:#2ea6ff;color:#fff;font-weight:700;cursor:pointer">连接并签名</button>
+            <div id="r" style="display:none;margin-top:8px;font-size:12px;color:#7fd">仅你可见：交易已签名 ✓</div>
+          </div>
+          <div class="meta">19:03 · 已读</div>
+        </div>
+      </div>
+    </div>
+    <p style="margin:14px 0 0;color:#8a97a5;font-size:13px">点击「连接并签名」：余额与 NFT 原地更新，并弹出「仅点击者可见」的临时回复（Bot API 10.4 新能力）。</p>
+  </div>
+
+  <div class="card">
+    <h2>② 体积约束（文章要求 &lt;4KB）</h2>
+    <p>widget.html 实际大小：<span class="ok">1358 字节</span> / 4096 字节上限，富余约 67%。</p>
+    <p><span class="tag">原生渲染</span><span class="tag">即时加载</span><span class="tag">原地更新</span><span class="tag">TON 钱包</span><span class="tag">仅你可见回复</span></p>
+  </div>
+
+  <div class="card">
+    <h2>③ 组件源码（widget.html，可直接嵌入 Bot API）</h2>
+    <pre>&lt;div id="app" style="font:14px system-ui;color:#fff;background:#17212b;padding:12px;border-radius:12px;width:240px;box-sizing:border-box"&gt;
+  &lt;div style="font-weight:700;margin-bottom:2px"&gt;💎 TON 钱包卡片&lt;/div&gt;
+  &lt;div style="opacity:.6;font-size:11px;margin-bottom:6px"&gt;Bot API 10.4 · 原生小组件&lt;/div&gt;
+  &lt;div id="bal" style="font-size:22px;font-weight:800;color:#9bdcff;margin:2px 0"&gt;— TON&lt;/div&gt;
+  &lt;div id="nft" style="opacity:.7;font-size:12px;margin-bottom:8px"&gt;NFT 贴纸：—&lt;/div&gt;
+  &lt;button id="btn" style="width:100%;padding:9px;border:0;border-radius:8px;background:#2ea6ff;color:#fff;font-weight:700;cursor:pointer"&gt;连接并签名&lt;/button&gt;
+  &lt;div id="r" style="display:none;margin-top:8px;font-size:12px;color:#7fd"&gt;仅你可见：交易已签名 ✓&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+  var tg = window.Telegram &amp;&amp; window.Telegram.WebApp;
+  if (tg) { tg.ready(); tg.expand(); }
+  document.getElementById('btn').onclick = function () {
+    // 真实场景：TON Connect 读取钱包卡片（余额 + NFT），并对交易签名
+    document.getElementById('bal').textContent = '12.84 TON';
+    document.getElementById('nft').textContent = 'NFT 贴纸：3';
+    document.getElementById('r').style.display = 'block';
+  };
+&lt;/script&gt;</pre>
+  </div>
+
+  <div class="card">
+    <h2>④ 如何接到真实机器人（Bot API 10.4）</h2>
+    <ul>
+      <li>用 BotFather 创建机器人，确认 Bot API 版本 ≥ 10.4。</li>
+      <li>通过 <code>sendMessage</code> 的组件字段下发这段 HTML（见 <code>bot-payload.json</code> 示意）。</li>
+      <li>需要真实钱包数据时，在 <code>onclick</code> 内接入 TON Connect：<code>window.Telegram.WebApp</code> 已就绪。</li>
+      <li>按钮触发的「仅你可见」临时回复由 Telegram 端原生处理，无需额外后端。</li>
+    </ul>
+    <p style="color:#8a97a5;font-size:13px">完整协议字段以 Telegram 官方 Bot API 10.4 文档为准；本 Demo 以结构示意 + 可交互 UI 呈现核心能力。</p>
+  </div>
+
+  <p style="color:#5b6776;font-size:12px;margin-top:24px">来源：深潮 TechFlow《Telegram 任意消息可变身应用，机器人可读取 TON 钱包余额》（2026.11.10）。Demo 仅作技术演示，钱包数据为模拟值。</p>
+</div>
+<script>
+  // 预览页内复用同一套交互逻辑
+  var tg = window.Telegram && window.Telegram.WebApp;
+  if (tg) { tg.ready(); tg.expand(); }
+  document.getElementById('btn').onclick = function () {
+    document.getElementById('bal').textContent = '12.84 TON';
+    document.getElementById('nft').textContent = 'NFT 贴纸：3';
+    document.getElementById('r').style.display = 'block';
+  };
+</script>
+</body>
+</html>
